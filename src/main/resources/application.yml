@@ -1,25 +1,29 @@
 server:
   port: 8000
 
-database:
-  username: GnomDanon
-  password: SpringStore123
-
 spring:
-  profiles:
-    active: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring2023
+    username: postgres
+    password: Ural-Revda23
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
 
----
-
-spring:
-  profiles: dev
-
----
-
-spring:
-  profiles: prod
-
----
-
-spring:
-  profiles: test
+#---
+#
+#spring:
+#  profiles: dev
+#
+#---
+#
+#spring:
+#  profiles: prod
+#
+#---
+#
+#spring:
+#  profiles: test
