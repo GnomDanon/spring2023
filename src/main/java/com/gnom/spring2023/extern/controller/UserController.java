@@ -1,7 +1,7 @@
 package com.gnom.spring2023.extern.controller;
 
-import com.gnom.spring2023.app.exception.UserAlreadyExistException;
-import com.gnom.spring2023.app.exception.UserNotFoundException;
+import com.gnom.spring2023.app.exception.user.UserAlreadyExistException;
+import com.gnom.spring2023.app.exception.user.UserNotFoundException;
 import com.gnom.spring2023.app.service.UserService;
 import com.gnom.spring2023.app.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.gnom.spring2023.app.service;
 
-import com.gnom.spring2023.app.exception.UserAlreadyExistException;
-import com.gnom.spring2023.app.exception.UserNotFoundException;
+import com.gnom.spring2023.app.exception.user.UserAlreadyExistException;
+import com.gnom.spring2023.app.exception.user.UserNotFoundException;
 import com.gnom.spring2023.app.repository.UserRepo;
 import com.gnom.spring2023.app.entity.UserEntity;
 import com.gnom.spring2023.domain.model.User;
