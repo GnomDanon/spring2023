@@ -2,12 +2,11 @@ package com.gnom.spring2023.app.entity;
 
 import com.gnom.spring2023.domain.model.Product;
 import com.gnom.spring2023.domain.model.ProductType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
 
 @Entity
 @Getter
@@ -21,6 +20,9 @@ public class ProductEntity {
     private boolean available;
     private int costPerUnit;
     private String composition;
+
+    @OneToMany(mappedBy = "productEntity")
+    private ArrayList<BasketProductEntity> basketProductEntities;
 
     public static Product toModel(ProductEntity productEntity) {
         Product model = new Product();

@@ -88,12 +88,13 @@ public class ProductController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity update(@RequestParam String name,
+    public ResponseEntity update(@RequestParam Long id,
+                                 @RequestParam String name,
                                  @RequestParam boolean available,
                                  @RequestParam int costPerUnit,
                                  @RequestParam String composition) {
         try {
-            productService.update(name, available, costPerUnit, composition);
+            productService.update(id, name, available, costPerUnit, composition);
             return ResponseEntity.ok("Товар успешно обновлен");
         } catch (ProductNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
