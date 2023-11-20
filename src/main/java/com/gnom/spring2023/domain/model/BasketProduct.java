@@ -25,5 +25,10 @@ public class BasketProduct {
      */
     private Long productId;
 
+    /**
+     * Количество товара, которое заказывает пользователь
+     */
+    private int count;
+
     public BasketProduct() {}
 }

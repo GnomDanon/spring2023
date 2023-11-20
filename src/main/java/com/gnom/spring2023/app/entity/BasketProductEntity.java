@@ -13,6 +13,8 @@ public class BasketProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private int count;
+
     @ManyToOne
     @JoinColumn
     private BasketEntity basketEntity;
@@ -28,6 +30,7 @@ public class BasketProductEntity {
         model.setId(basketProductEntity.getId());
         model.setBasketId(basketProductEntity.getBasketEntity().getId());
         model.setProductId(basketProductEntity.getProductEntity().getId());
+        model.setCount(basketProductEntity.getCount());
         return model;
     }
 }
