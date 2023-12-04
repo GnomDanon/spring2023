@@ -1,5 +1,6 @@
 package com.gnom.spring2023.extern.controller;
 
+import com.gnom.spring2023.app.exception.user.IncorrectUsernameOrPassword;
 import com.gnom.spring2023.app.exception.user.UserAlreadyExistException;
 import com.gnom.spring2023.app.exception.user.UserNotFoundException;
 import com.gnom.spring2023.app.service.UserService;
@@ -15,7 +16,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/createUser")
+    @PostMapping("/registration")
     public ResponseEntity registration(@RequestBody UserEntity user) {
         try {
             userService.registration(user);
@@ -27,8 +28,19 @@ public class UserController {
         }
     }
 
+    @GetMapping("/login")
+    public ResponseEntity login(@RequestParam String username, @RequestParam String password) {
+        try {
+            return ResponseEntity.ok(userService.login(username, password));
+        } catch (IncorrectUsernameOrPassword e) {
+            return ResponseEntity.status(401).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Произошла ошибка");
+        }
+    }
+
     @GetMapping("/getOne")
-    public ResponseEntity getOnUser(@RequestParam Long id) {
+    public ResponseEntity getOneUser(@RequestParam Long id) {
         try {
             return ResponseEntity.ok(userService.getOne(id));
         } catch (UserNotFoundException e) {
