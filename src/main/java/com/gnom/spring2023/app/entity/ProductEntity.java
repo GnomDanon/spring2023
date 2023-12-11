@@ -21,8 +21,11 @@ public class ProductEntity {
     private int costPerUnit;
     private String composition;
 
-    @OneToMany(mappedBy = "productEntity")
+    @OneToMany(mappedBy = "productEntity", orphanRemoval = true)
     private ArrayList<BasketProductEntity> basketProductEntities;
+
+    @OneToMany(mappedBy = "productEntity", orphanRemoval = true)
+    private ArrayList<CompletedOrderProductEntity> completedOrderProductEntities;
 
     public static Product toModel(ProductEntity productEntity) {
         Product model = new Product();

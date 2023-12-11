@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Entity
 @Getter
 @Setter
@@ -18,6 +20,9 @@ public class UserEntity {
 
     @OneToOne(mappedBy = "userEntity", orphanRemoval = true)
     private BasketEntity basketEntity;
+
+    @OneToMany(mappedBy = "userEntity", orphanRemoval = true)
+    private ArrayList<CompletedOrderEntity> completedOrderEntities;
 
     public UserEntity() {
     }

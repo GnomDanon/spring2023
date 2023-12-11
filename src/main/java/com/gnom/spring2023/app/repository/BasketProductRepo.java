@@ -7,4 +7,8 @@ public interface BasketProductRepo extends CrudRepository<BasketProductEntity, L
     Iterable<BasketProductEntity> findAllByBasketEntity_Id(Long basketEntity_Id);
 
     BasketProductEntity findByBasketEntity_IdAndProductEntity_Id(Long basketEntity_Id, Long productEntity_Id);
+
+    void deleteAllByBasketEntity_Id(Long basketEntity_Id);
+
+    void deleteByBasketEntity_IdAndProductEntity_Id(Long basketEntityId, Long productEntityId);
 }

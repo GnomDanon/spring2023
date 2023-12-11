@@ -2,6 +2,7 @@ package com.gnom.spring2023.app.service;
 
 import com.gnom.spring2023.app.entity.BasketProductEntity;
 import com.gnom.spring2023.app.exception.basketProduct.BasketProductAlreadyExistException;
+import com.gnom.spring2023.app.exception.basketProduct.BasketProductNotFoundException;
 import com.gnom.spring2023.app.repository.BasketProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,22 @@ public class BasketProductService {
      */
     public Iterable<BasketProductEntity> getAllByBasketId(Long basketId) {
         return basketProductRepo.findAllByBasketEntity_Id(basketId);
+    }
+
+    public void deleteAllByBasketId(Long basketId) {
+        basketProductRepo.deleteAllByBasketEntity_Id(basketId);
+    }
+
+    public void deleteOneByBasketIdAndProductId(Long basketId, Long productId) {
+        basketProductRepo.deleteByBasketEntity_IdAndProductEntity_Id(basketId, productId);
+    }
+
+    public void changeCountById(Long id, int count) throws BasketProductNotFoundException {
+        BasketProductEntity basketProduct = basketProductRepo.findById(id).orElse(null);
+        if (basketProduct == null) {
+            throw new BasketProductNotFoundException();
+        }
+        basketProduct.setCount(count);
+        basketProductRepo.save(basketProduct);
     }
 }
