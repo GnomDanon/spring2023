@@ -28,7 +28,7 @@ public class BasketService {
      * @return Созданная корзина
      * @throws BasketAlreadyExistException Корзина для этого пользователя уже существует
      */
-    public BasketEntity create(BasketEntity basket) throws BasketAlreadyExistException {
+    protected BasketEntity create(BasketEntity basket) throws BasketAlreadyExistException {
         if (basketRepo.findByUserEntity_Id(basket.getUserEntity().getId()) != null) {
             throw new BasketAlreadyExistException();
         }
@@ -70,7 +70,7 @@ public class BasketService {
      * @throws ProductNotFoundException Товар, принадлежащий корзине, не был найден
      * @throws BasketNotFoundException Корзина не найдена
      */
-    public void updateSum(Long id) throws ProductNotFoundException, BasketNotFoundException {
+    protected void updateSum(Long id) throws ProductNotFoundException, BasketNotFoundException {
         Iterable<BasketProductEntity> basketProductEntities = basketProductService.getAllByBasketId(id);
         double newSum = 0;
         for (BasketProductEntity basketProduct : basketProductEntities) {
